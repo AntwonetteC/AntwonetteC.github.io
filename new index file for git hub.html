@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vacation With Grace Travel & Tours</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #112240;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f8f4ee;
+      --text-light: #d4c5a9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--navy);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0a1628 0%, #112240 60%, #0d1f3c 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+
+    .brand-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    /* ===== 5 DAYS 4 NIGHTS BADGE ===== */
+    .trip-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      color: var(--navy);
+      border-radius: 8px;
+      padding: 18px 36px;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .trip-badge::before,
+    .trip-badge::after {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--navy);
+      opacity: 0.5;
+    }
+    .trip-badge::before { left: 14px; }
+    .trip-badge::after { right: 14px; }
+
+    .trip-badge .nights {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .trip-badge .label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(10px, 2.5vw, 13px);
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .hero-sub {
+      font-size: clamp(13px, 3vw, 16px);
+      color: var(--text-light);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto;
+    }
+
+    /* DOUBLE OCCUPANCY NOTE */
+    .occupancy-note {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 40px;
+      margin-bottom: 40px;
+    }
+
+    /* FORM SECTION */
+    .form-section {
+      background: linear-gradient(180deg, var(--navy-mid) 0%, #0d1a2e 100%);
+      padding: 70px 24px;
+    }
+
+    .form-container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 600;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    /* Traveler Card */
+    .traveler-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+    }
+
+    .traveler-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .traveler-number {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .traveler-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .traveler-subtitle {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 560px) {
+      .form-row.two-col { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .form-group input,
+    .form-group select {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 6px;
+      padding: 14px 16px;
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.07);
+    }
+
+    .form-group select option {
+      background: var(--navy-mid);
+      color: var(--white);
+    }
+
+    /* Group size row */
+    .group-row {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+
+    .group-row-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+
+    .form-note {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 12px;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* Success message */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .success-msg .checkmark {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .success-msg h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .success-msg p {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      color: var(--text-light);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="brand-tag">Vacation With Grace Travel & Tours</p>
+    <h1>Travel in <span>Grace</span>,<br/>Live the Experience</h1>
+
+    <div class="trip-badge">
+      <div class="nights">5 Days · 4 Nights</div>
+      <div class="label">All-Inclusive Getaway</div>
+    </div>
+
+    <p class="hero-sub">An unforgettable all-inclusive escape curated for you. Premium accommodations, meals, drinks, and memories — all taken care of.</p>
+
+    <div class="divider"></div>
+    <div class="occupancy-note">✦ Based on Double Occupancy ✦</div>
+  </section>
+
+  <!-- LEAD CAPTURE FORM -->
+  <section class="form-section">
+    <div class="form-container">
+      <p class="section-label">Reserve Your Spot</p>
+      <h2 class="section-title">I'm Interested — Count Me In!</h2>
+      <p class="section-sub">Fill out your info below and Antwonette will reach out personally to walk you through everything.</p>
+
+      <div id="formWrapper">
+
+        <!-- Group Size -->
+        <div class="group-row">
+          <p class="group-row-label">Group Details</p>
+          <div class="form-group">
+            <label for="groupSize">Total Number of Travelers</label>
+            <select id="groupSize" name="groupSize" required>
+              <option value="" disabled selected>Select number of travelers</option>
+              <option value="1">1 Traveler</option>
+              <option value="2">2 Travelers</option>
+              <option value="3">3 Travelers</option>
+              <option value="4">4 Travelers</option>
+              <option value="5">5 Travelers</option>
+              <option value="6">6 Travelers</option>
+              <option value="7">7 Travelers</option>
+              <option value="8">8 Travelers</option>
+              <option value="9">9 Travelers</option>
+              <option value="10">10 Travelers</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Traveler 1 -->
+        <div class="traveler-card">
+          <div class="traveler-header">
+            <div class="traveler-number">1</div>
+            <div>
+              <div class="traveler-title">Primary Traveler</div>
+              <div class="traveler-subtitle">Lead contact — we'll reach out to you directly</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name1">Full Name</label>
+              <input type="text" id="name1" name="traveler1_name" placeholder="Your full name" required/>
+            </div>
+          </div>
+          <div class="form-row two-col" style="margin-top:16px;">
+            <div class="form-group">
+              <label for="email1">Email Address</label>
+              <input type="email" id="email1" name="traveler1_email" placeholder="your@email.com" required/>
+            </div>
+            <div class="form-group">
+              <label for="phone1">Phone Number</label>
+              <input type="tel" id="phone1" name="traveler1_phone" placeholder="(000) 000-0000" required/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Traveler 2 -->
+        <div class="traveler-card">
+          <div class="traveler-header">
+            <div class="traveler-number">2</div>
+            <div>
+              <div class="traveler-title">Traveler 2</div>
+              <div class="traveler-subtitle">Second guest — based on double occupancy</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name2">Full Name</label>
+              <input type="text" id="name2" name="traveler2_name" placeholder="Traveler 2 full name"/>
+            </div>
+          </div>
+          <div class="form-row two-col" style="margin-top:16px;">
+            <div class="form-group">
+              <label for="email2">Email Address</label>
+              <input type="email" id="email2" name="traveler2_email" placeholder="their@email.com"/>
+            </div>
+            <div class="form-group">
+              <label for="phone2">Phone Number</label>
+              <input type="tel" id="phone2" name="traveler2_phone" placeholder="(000) 000-0000"/>
+            </div>
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()">Submit My Information</button>
+        <p class="form-note">By submitting, you agree to be contacted by Vacation With Grace Travel & Tours.<br/>Your information is kept private and never shared.</p>
+
+      </div>
+
+      <!-- Success Message -->
+      <div class="success-msg" id="successMsg">
+        <div class="checkmark">✦</div>
+        <h3>Thank You!</h3>
+        <p>Your information has been received.<br/>Antwonette will be in touch with you personally very soon.<br/><br/><em style="color:var(--gold);">Get ready to travel in Grace!</em></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 <span>Vacation With Grace Travel & Tours</span> · All Rights Reserved</p>
+    <p style="margin-top:8px;">Independent Travel Advisor · Caribbean & Mexico Specialists</p>
+  </footer>
+
+  <script>
+    async function submitForm() {
+      const groupSize = document.getElementById('groupSize').value;
+      const name1 = document.getElementById('name1').value.trim();
+      const email1 = document.getElementById('email1').value.trim();
+      const phone1 = document.getElementById('phone1').value.trim();
+
+      if (!groupSize || !name1 || !email1 || !phone1) {
+        alert('Please fill in the Group Size and all Primary Traveler fields.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('group_size', groupSize);
+      formData.append('traveler1_name', name1);
+      formData.append('traveler1_email', email1);
+      formData.append('traveler1_phone', phone1);
+      formData.append('traveler2_name', document.getElementById('name2').value.trim());
+      formData.append('traveler2_email', document.getElementById('email2').value.trim());
+      formData.append('traveler2_phone', document.getElementById('phone2').value.trim());
+
+      try {
+        const response = await fetch('https://formspree.io/f/xredvnag', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          document.getElementById('formWrapper').style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again or contact us directly.');
+        }
+      } catch (err) {
+        alert('Network error. Please check your connection and try again.');
+      }
+    }
+  </script>
+
+</body>
+</html>
