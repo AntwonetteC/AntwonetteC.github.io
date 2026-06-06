@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ark Encounter Getaway | Vacation With Grace Travel & Tours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f1f38;
+      --navy-light: #152744;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f8f4ee;
+      --text-light: #c8b99a;
+      --text-dim: #7a6e5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--navy); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.6; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .fade-up { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+    .d1{animation-delay:.15s} .d2{animation-delay:.3s} .d3{animation-delay:.45s} .d4{animation-delay:.6s} .d5{animation-delay:.75s}
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(10,22,40,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.18); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .brand-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(14px,2.5vw,18px); color: var(--gold); letter-spacing: 1px; }
+    .brand-sub { font-size: 9px; letter-spacing: 3px; color: var(--text-light); text-transform: uppercase; }
+    .nav-phone { font-size: 12px; color: var(--text-light); }
+    .nav-phone a { color: var(--gold-light); text-decoration: none; font-weight: 600; }
+
+    /* HERO */
+    .hero { min-height: 100vh; background: radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 50%), linear-gradient(175deg, #061018 0%, #0a1628 40%, #0d1f3c 70%, #091520 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 110px 24px 70px; position: relative; overflow: hidden; }
+    .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .hero-coming { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem,4vw,2rem); color: var(--text-light); margin-bottom: 8px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(3rem,10vw,7rem); line-height: 0.95; color: var(--white); margin-bottom: 6px; }
+    .hero-title .gold-word { display: block; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 3s linear infinite; }
+    .hero-title .sub-word { font-size: clamp(1.6rem,4vw,3rem); font-weight: 300; font-style: italic; color: var(--text-light); display: block; margin-top: 6px; -webkit-text-fill-color: var(--text-light); }
+    .hero-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1rem,3vw,1.4rem); color: var(--text-light); margin: 14px 0; }
+    .hero-desc { font-size: clamp(13px,2.5vw,15px); color: var(--text-light); max-width: 580px; line-height: 1.9; margin-bottom: 20px; }
+    .days-badge { display: inline-flex; flex-direction: column; align-items: center; border: 2px solid var(--gold); border-radius: 6px; padding: 12px 40px; margin: 16px 0; position: relative; }
+    .days-badge .big-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,6vw,2.8rem); font-weight: 700; color: var(--gold); line-height: 1; }
+    .days-badge .badge-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-light); margin-top: 3px; }
+    .hero-dates { font-size: clamp(13px,3vw,16px); font-weight: 600; letter-spacing: 2px; color: var(--gold-light); margin-bottom: 6px; }
+    .hero-departs { font-size: 12px; letter-spacing: 2px; color: var(--text-light); margin-bottom: 10px; text-transform: uppercase; }
+    .interest-pill { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.5); color: var(--gold-light); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 22px; border-radius: 40px; margin-bottom: 10px; }
+    .occupancy-pill { display: inline-block; border: 1px solid rgba(201,168,76,0.25); color: var(--text-light); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 40px; margin-bottom: 28px; }
+    .hero-btn { display: inline-block; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%); background-size: 200% auto; color: var(--navy); padding: 18px 48px; border-radius: 4px; font-weight: 700; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background-position 0.4s, transform 0.2s; animation: float 3s ease-in-out infinite; }
+    .hero-btn:hover { background-position: right center; transform: translateY(-3px); }
+    .hero-foot { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem,3vw,1.5rem); color: var(--text-light); margin-top: 20px; }
+    .seats-note { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 12px; }
+
+    /* DEPOSIT BANNER */
+    .deposit-banner { background: linear-gradient(135deg, #0d1a2e, #152744); border-top: 1px solid rgba(201,168,76,0.2); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 44px 24px; text-align: center; }
+    .deposit-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .deposit-price { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem,10vw,5.5rem); font-weight: 700; color: var(--gold); line-height: 1.1; margin-bottom: 6px; }
+    .deposit-per { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: var(--text-light); text-transform: uppercase; margin-bottom: 12px; }
+    .deposit-desc { font-size: 13px; color: var(--text-light); max-width: 480px; margin: 0 auto; line-height: 1.8; }
+    .deposit-desc strong { color: var(--gold-light); }
+
+    /* SECTIONS */
+    .section { padding: 70px 24px; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,5vw,3rem); font-weight: 700; text-align: center; color: var(--white); margin-bottom: 12px; }
+    .section-body { text-align: center; color: var(--text-light); font-size: 14px; max-width: 600px; margin: 0 auto 40px; line-height: 1.9; }
+    .gold-line { width: 60px; height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); margin: 0 auto 40px; }
+
+    /* PHOTOS */
+    .photo-section { background: var(--navy-mid); }
+    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 36px; }
+    @media(min-width:640px){ .photo-grid { grid-template-columns: 2fr 1fr 1fr; } .photo-grid .photo-main { grid-row: span 2; } }
+    .photo-card { border-radius: 8px; overflow: hidden; background: var(--navy-light); border: 1px solid rgba(201,168,76,0.12); aspect-ratio: 4/3; position: relative; }
+    .photo-card.photo-main { aspect-ratio: 3/4; }
+    @media(min-width:640px){ .photo-card.photo-main { aspect-ratio: unset; } }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(10,22,40,0.92)); padding: 20px 12px 10px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); }
+
+    /* ITINERARY */
+    .itinerary-section { background: var(--navy); }
+    .day-row { display: grid; grid-template-columns: 70px 1fr; margin-bottom: 0; }
+    .day-marker { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+    .day-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 0 4px rgba(201,168,76,0.15); }
+    .day-line { width: 2px; flex: 1; min-height: 40px; background: rgba(201,168,76,0.2); margin: 6px auto 0; }
+    .day-content { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.12); border-radius: 10px; padding: 20px 22px; margin-bottom: 16px; }
+    .day-num { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
+    .day-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .day-desc { font-size: 13px; color: var(--text-light); line-height: 1.8; }
+    .day-meals { font-size: 11px; color: var(--gold); font-weight: 600; margin-top: 10px; letter-spacing: 1px; }
+
+    /* INCLUDES */
+    .includes-section { background: var(--navy-mid); }
+    .two-col-grid { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
+    @media(min-width:640px){ .two-col-grid { grid-template-columns: 1fr 1fr; } }
+    .col-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.15); border-radius: 10px; padding: 28px 24px; }
+    .col-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .col-card.not-included h3 { color: var(--text-light); }
+    .col-list { list-style: none; }
+    .col-list li { font-size: 13px; color: var(--text-light); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+    .col-list li:last-child { border-bottom: none; }
+    .col-list li .check { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+    .col-list li .ex { color: var(--text-dim); flex-shrink: 0; margin-top: 1px; }
+
+    /* PERFECT FOR */
+    .perfect-section { background: var(--navy); }
+    .perfect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .perfect-card { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.15); border-radius: 10px; padding: 18px 20px; transition: border-color 0.2s; }
+    .perfect-card:hover { border-color: var(--gold); }
+    .perfect-icon { font-size: 1.8rem; }
+    .perfect-name { font-size: 13px; font-weight: 600; color: var(--white); }
+
+    /* PRICING */
+    .price-section { background: var(--navy-mid); }
+    .price-card { max-width: 540px; margin: 36px auto 0; background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.02)); border: 2px solid rgba(201,168,76,0.35); border-radius: 14px; padding: 44px 32px; text-align: center; }
+    .price-big { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem,12vw,6rem); font-weight: 700; color: var(--gold); line-height: 1.1; margin-bottom: 8px; }
+    .price-per { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--text-light); text-transform: uppercase; padding-top: 8px; border-top: 1px solid rgba(201,168,76,0.2); margin-bottom: 24px; }
+    .price-details { list-style: none; text-align: left; margin-bottom: 24px; }
+    .price-details li { font-size: 13px; color: var(--text-light); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 10px; }
+    .price-details li:last-child { border-bottom: none; }
+    .price-details .check { color: var(--gold); flex-shrink: 0; }
+    .price-deposit-note { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 16px 18px; font-size: 12px; color: var(--gold-light); line-height: 1.8; }
+
+    /* INSURANCE */
+    .insurance-section { background: var(--navy); }
+    .insurance-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.15); border-left: 4px solid var(--gold); border-radius: 10px; padding: 28px; max-width: 700px; margin: 32px auto 0; }
+    .insurance-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 12px; }
+    .insurance-card p { font-size: 13px; color: var(--text-light); line-height: 1.9; }
+
+    /* FAQ */
+    .faq-section { background: var(--navy-mid); }
+    .faq-wrap { max-width: 720px; margin: 0 auto; }
+    .faq-item { border: 1px solid rgba(201,168,76,0.15); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; cursor: pointer; background: rgba(255,255,255,0.03); font-size: 14px; font-weight: 600; color: var(--white); gap: 16px; transition: background 0.2s; }
+    .faq-q:hover { background: rgba(201,168,76,0.06); }
+    .faq-icon { color: var(--gold); font-size: 22px; font-weight: 300; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-a { display: none; padding: 0 22px 18px; font-size: 13px; color: var(--text-light); line-height: 1.9; background: rgba(255,255,255,0.02); }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-q { color: var(--gold-light); }
+
+    /* FORM */
+    .form-section { background: linear-gradient(180deg, var(--navy-mid) 0%, #080f1c 100%); }
+    .form-notice { background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.25); border-radius: 8px; padding: 16px 20px; font-size: 13px; color: var(--text-light); line-height: 1.8; text-align: center; margin-bottom: 28px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .form-notice strong { color: var(--gold-light); }
+    .form-wrap { max-width: 720px; margin: 0 auto; }
+    .traveler-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.18); border-radius: 12px; padding: 28px 24px; margin-bottom: 18px; }
+    .traveler-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .t-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .t-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--white); }
+    .t-sub { font-size: 11px; color: var(--text-light); }
+    .t-optional { font-size: 10px; color: var(--text-dim); font-style: italic; }
+    .group-row { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 22px 24px; margin-bottom: 20px; }
+    .group-row-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media(min-width:560px){ .form-row.two-col { grid-template-columns: 1fr 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+    .form-group input, .form-group select { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.22); border-radius: 6px; padding: 13px 16px; color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-group input::placeholder { color: rgba(255,255,255,0.2); }
+    .form-group input:focus, .form-group select:focus { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+    .form-group select option { background: #0f1f38; color: var(--white); }
+    .submit-btn { width: 100%; padding: 19px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%); background-size: 200% auto; color: var(--navy); border: none; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background-position 0.4s, transform 0.2s; margin-top: 10px; }
+    .submit-btn:hover { background-position: right center; transform: translateY(-2px); }
+    .disclaimer { margin-top: 20px; padding: 16px 20px; background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; font-size: 12px; color: var(--text-light); line-height: 1.9; text-align: center; }
+    .disclaimer strong { color: var(--gold-light); }
+    .success-msg { display: none; text-align: center; padding: 48px 24px; }
+    .success-msg .s-icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-msg h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); margin-bottom: 12px; }
+    .success-msg p { color: var(--text-light); line-height: 1.9; }
+
+    /* CONTACT */
+    .contact-section { background: var(--navy); text-align: center; padding: 64px 24px; }
+    .contact-phone { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,7vw,3.5rem); font-weight: 700; color: var(--gold); margin: 14px 0 6px; }
+    .contact-phone a { color: var(--gold); text-decoration: none; }
+
+    /* FOOTER */
+    footer { background: #060e1a; border-top: 1px solid rgba(201,168,76,0.3); text-align: center; padding: 44px 24px; font-size: 13px; color: var(--text-light); letter-spacing: 0.5px; line-height: 2.6; }
+    .f-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem,4vw,1.8rem); color: var(--white); margin-bottom: 16px; line-height: 1.5; }
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="brand-name">Vacation With Grace</div>
+    <div class="brand-sub">Travel & Tours</div>
+  </div>
+  <div class="nav-phone">Call/Text <a href="tel:4802462353">480-246-2353</a></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow fade-up">✦ Exclusive Group Experience · 2026 ✦</p>
+  <p class="hero-coming fade-up d1">Something Amazing is Coming!</p>
+  <h1 class="hero-title fade-up d2">
+    <span class="gold-word">ARK</span>
+    ENCOUNTER
+    <span class="sub-word">Getaway</span>
+  </h1>
+  <p class="hero-tagline fade-up d2">Faith. History. Fellowship. Fun.</p>
+  <p class="hero-desc fade-up d3">Join Vacation With Grace Travel and Tours for a 5-day deluxe motor coach getaway featuring the Ark Encounter, Creation Museum, National Underground Railroad Freedom Center, and a BB Riverboat Sightseeing Cruise on the Ohio River.</p>
+
+  <div class="days-badge fade-up d3">
+    <div class="big-num">5 Days / 4 Nights</div>
+    <div class="badge-label">Deluxe Motor Coach Experience</div>
+  </div>
+
+  <p class="hero-dates fade-up d4">✦ October 30 – November 3, 2026 ✦</p>
+  <p class="hero-departs fade-up d4">Departing from Stone Mountain, Georgia</p>
+  <div class="interest-pill fade-up d4">🔥 Interest List Now Open!</div><br/>
+  <div class="occupancy-pill fade-up d5">✦ All Rates Based on Double Occupancy ✦</div>
+  <a href="#register" class="hero-btn fade-up d5">Request Booking Information</a>
+  <p class="hero-foot fade-up d5">"We Plan. You Pack. God Makes a Way."</p>
+  <p class="seats-note fade-up d5">⚠️ Seats Are Limited — Don't Wait!</p>
+</section>
+
+<!-- DEPOSIT BANNER -->
+<div class="deposit-banner">
+  <p class="deposit-eyebrow">Secure Your Seat Today</p>
+  <div class="deposit-price">$75</div>
+  <p class="deposit-per">Non-Refundable Deposit · Per Person</p>
+  <p class="deposit-desc">Applied toward your total trip cost of $775. <strong>Monthly payments available.</strong> Final payment due September 5, 2026.</p>
+</div>
+
+<!-- PHOTOS -->
+<section class="section photo-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">What Awaits You</p>
+    <h2 class="section-title">See It to Believe It</h2>
+    <div class="gold-line"></div>
+    <div class="photo-grid">
+      <div class="photo-card photo-main">
+        <img src="ark.jpeg" alt="Ark Encounter" style="width:100%;height:100%;object-fit:cover;"/>
+        <div class="photo-label">The Ark Encounter · Williamstown, KY</div>
+      </div>
+      <div class="photo-card">
+        <img src="museum.jpeg" alt="Creation Museum" style="width:100%;height:100%;object-fit:cover;"/>
+        <div class="photo-label">Creation Museum</div>
+      </div>
+      <div class="photo-card">
+        <img src="freedom.jpeg" alt="National Underground Railroad Freedom Center" style="width:100%;height:100%;object-fit:cover;"/>
+        <div class="photo-label">National Underground Railroad Freedom Center</div>
+      </div>
+      <div class="photo-card">
+        <img src="coach.jpg" alt="Luxury Motor Coach" style="width:100%;height:100%;object-fit:cover;"/>
+        <div class="photo-label">Luxury Motor Coach</div>
+      </div>
+      <div class="photo-card">
+        <img src="riverboat.jpeg" alt="BB Riverboat Cruise" style="width:100%;height:100%;object-fit:cover;"/>
+        <div class="photo-label">BB Riverboat Sightseeing Cruise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section class="section itinerary-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Day by Day</p>
+    <h2 class="section-title">Your 5-Day Journey</h2>
+    <p class="section-body">Every detail is planned so all you have to do is show up, relax, and enjoy the experience.</p>
+    <div>
+      <div class="day-row">
+        <div class="day-marker"><div class="day-dot"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <p class="day-num">Day 1 · October 30 — Departure Day</p>
+          <h3 class="day-title">The Adventure Begins!</h3>
+          <p class="day-desc">Depart early morning from Stone Mountain, Georgia aboard a deluxe motor coach. Sit back, relax, and enjoy the journey. Upon arrival, check in to your hotel and enjoy dinner before settling in for the evening.</p>
+          <p class="day-meals">✦ Meals Included: Dinner</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-marker"><div class="day-dot"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <p class="day-num">Day 2 · October 31 — Ark Encounter</p>
+          <h3 class="day-title">Walk Through Noah's Ark</h3>
+          <p class="day-desc">After breakfast, depart for the world-famous Ark Encounter. Experience the life-size reconstruction of Noah's Ark and explore exhibits that bring biblical history to life across seven breathtaking decks.</p>
+          <p class="day-meals">✦ Meals Included: Breakfast, Dinner</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-marker"><div class="day-dot"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <p class="day-num">Day 3 · November 1 — Creation Museum</p>
+          <h3 class="day-title">Faith & Science Come Alive</h3>
+          <p class="day-desc">Enjoy breakfast before departing for the Creation Museum. Explore biblical history exhibits, beautiful botanical gardens, a planetarium show, and educational experiences designed for visitors of all ages.</p>
+          <p class="day-meals">✦ Meals Included: Breakfast, Dinner</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-marker"><div class="day-dot"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <p class="day-num">Day 4 · November 2 — Freedom Center & River Cruise</p>
+          <h3 class="day-title">History & Scenic Beauty</h3>
+          <p class="day-desc">After breakfast, visit the National Underground Railroad Freedom Center — a powerful, moving experience honoring the journey to freedom. Later, enjoy a BB Riverboat Sightseeing Cruise aboard a fully enclosed, temperature-controlled vessel on the scenic Ohio River. Enjoy dinner before returning to the hotel for your final evening.</p>
+          <p class="day-meals">✦ Meals Included: Breakfast, Dinner</p>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-marker"><div class="day-dot"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <p class="day-num">Day 5 · November 3 — Return Home</p>
+          <h3 class="day-title">Homeward Bound</h3>
+          <p class="day-desc">Enjoy breakfast before checking out of the hotel and boarding the motor coach for the journey back to Stone Mountain, Georgia. Hearts full, spirits renewed, memories made that will last a lifetime.</p>
+          <p class="day-meals">✦ Meals Included: Breakfast</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDES / NOT INCLUDED -->
+<section class="section includes-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Package Details</p>
+    <h2 class="section-title">What's Included & What's Not</h2>
+    <div class="gold-line"></div>
+    <div class="two-col-grid">
+      <div class="col-card">
+        <h3>✦ What's Included</h3>
+        <ul class="col-list">
+          <li><span class="check">✓</span> Deluxe motor coach transportation</li>
+          <li><span class="check">✓</span> 4 nights hotel accommodations</li>
+          <li><span class="check">✓</span> 4 breakfasts</li>
+          <li><span class="check">✓</span> 4 dinners including applicable meal gratuities</li>
+          <li><span class="check">✓</span> Snacks onboard</li>
+          <li><span class="check">✓</span> Admission to Ark Encounter</li>
+          <li><span class="check">✓</span> Admission to Creation Museum</li>
+          <li><span class="check">✓</span> Admission to National Underground Railroad Freedom Center</li>
+          <li><span class="check">✓</span> BB Riverboat Sightseeing Cruise on the Ohio River</li>
+          <li><span class="check">✓</span> Onboard games, raffles, and fellowship</li>
+        </ul>
+      </div>
+      <div class="col-card not-included">
+        <h3>✗ What's Not Included</h3>
+        <ul class="col-list">
+          <li><span class="ex">✗</span> Lunches</li>
+          <li><span class="ex">✗</span> Souvenirs and personal purchases</li>
+          <li><span class="ex">✗</span> Gratuity for the motor coach driver</li>
+          <li><span class="ex">✗</span> Optional activities not listed in the itinerary</li>
+          <li><span class="ex">✗</span> Travel insurance (highly recommended — ask us!)</li>
+          <li><span class="ex">✗</span> Any items not specifically listed under "What's Included"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFECT FOR -->
+<section class="section perfect-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Who Should Come?</p>
+    <h2 class="section-title">Perfect For</h2>
+    <div class="perfect-grid">
+      <div class="perfect-card"><div class="perfect-icon">👨‍👩‍👧‍👦</div><div class="perfect-name">Families</div></div>
+      <div class="perfect-card"><div class="perfect-icon">⛪</div><div class="perfect-name">Church Groups</div></div>
+      <div class="perfect-card"><div class="perfect-icon">👯‍♀️</div><div class="perfect-name">Friends Getaways</div></div>
+      <div class="perfect-card"><div class="perfect-icon">💑</div><div class="perfect-name">Couples</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section price-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Trip Investment</p>
+    <h2 class="section-title">All-Inclusive Pricing</h2>
+    <div class="price-card">
+      <div class="price-big">$775</div>
+      <p class="price-per">Per Person · Double Occupancy</p>
+      <ul class="price-details">
+        <li><span class="check">✦</span> $75 non-refundable deposit per person required to reserve your seat</li>
+        <li><span class="check">✦</span> The $75 deposit is applied toward the total trip cost — not an extra fee</li>
+        <li><span class="check">✦</span> Monthly payments available</li>
+        <li><span class="check">✦</span> Final payment due September 5, 2026</li>
+      </ul>
+      <div class="price-deposit-note">
+        💛 <strong>Spots are limited and available on a first-come, first-served basis.</strong><br/>
+        Your seat is only confirmed upon receipt of your deposit.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<section class="section insurance-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Protect Your Investment</p>
+    <h2 class="section-title">Travel Insurance Available</h2>
+    <div class="insurance-card">
+      <h3>🛡️ We Strongly Recommend Travel Protection</h3>
+      <p>Travel insurance is not included but is <strong style="color:var(--gold-light);">strongly recommended</strong>. Cancel For Any Reason and Interrupt For Any Reason coverage may be available as an optional add-on when the full trip cost is insured within 14 days of the initial trip deposit. Ask Antwonette about available options when she contacts you after you register.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Got Questions?</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="gold-line"></div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is the $75 deposit refundable?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">No. The $75 deposit is non-refundable and is applied toward the total trip cost of $775.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is travel insurance included?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">No. Travel insurance is not included but is highly recommended. Cancel For Any Reason and Interrupt For Any Reason coverage may be available as an optional add-on when the full trip cost is insured within 14 days of the initial trip deposit. Ask Antwonette for details.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is single occupancy available?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Single occupancy may be available at an additional cost and is based on availability. Contact Antwonette for pricing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Do you offer roommate matching?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">No. Roommate matching is not available. Travelers requesting double occupancy must provide their own roommate.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>When is final payment due?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Final payment is due September 5, 2026. Monthly payment options are available. Antwonette will provide your payment schedule upon booking.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Are seats limited?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes. Seats are limited and available on a first-come, first-served basis. Your seat is only secured upon receipt of your $75 non-refundable deposit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I reserve my seat?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Complete the request form below. Once your information is received, Vacation With Grace Travel and Tours will send you booking instructions and deposit information. Submitting the form does not guarantee your reservation until your deposit is received.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What should I bring?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Pack comfortable walking shoes, weather-appropriate clothing for late October/early November in Kentucky (it can be cool!), a valid government-issued photo ID, spending money for lunches, souvenirs, and personal purchases, and a camera to capture all the memories!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="section form-section" id="register">
+  <div class="section-inner">
+    <p class="section-eyebrow">Join the Interest List</p>
+    <h2 class="section-title">Request Booking Information</h2>
+    <p class="section-body">Fill out the form below and Antwonette will reach out personally with booking instructions, payment options, and everything you need to secure your spot.</p>
+
+    <div class="form-notice">
+      <strong>Please Note:</strong> Complete the form below to receive booking information. Submission of this form does not guarantee a reservation until your booking is confirmed and deposit requirements are met.
+    </div>
+
+    <div class="form-wrap">
+      <div id="formContent">
+        <div class="traveler-card">
+          <div class="traveler-header">
+            <div class="t-num">1</div>
+            <div>
+              <div class="t-title">Traveler 1</div>
+              <div class="t-sub">Primary contact — Antwonette will reach out to you directly</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name1">Full Name</label>
+              <input type="text" id="name1" name="traveler1_name" placeholder="Your full name" required/>
+            </div>
+          </div>
+          <div class="form-row two-col" style="margin-top:14px;">
+            <div class="form-group">
+              <label for="phone1">Phone Number</label>
+              <input type="tel" id="phone1" name="traveler1_phone" placeholder="(000) 000-0000" required/>
+            </div>
+            <div class="form-group">
+              <label for="email1">Email Address</label>
+              <input type="email" id="email1" name="traveler1_email" placeholder="your@email.com" required/>
+            </div>
+          </div>
+        </div>
+
+        <div class="traveler-card">
+          <div class="traveler-header">
+            <div class="t-num">2</div>
+            <div>
+              <div class="t-title">Traveler 2</div>
+              <div class="t-sub">Second guest <span class="t-optional">(optional)</span></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name2">Full Name</label>
+              <input type="text" id="name2" name="traveler2_name" placeholder="Traveler 2 full name"/>
+            </div>
+          </div>
+          <div class="form-row two-col" style="margin-top:14px;">
+            <div class="form-group">
+              <label for="phone2">Phone Number</label>
+              <input type="tel" id="phone2" name="traveler2_phone" placeholder="(000) 000-0000"/>
+            </div>
+            <div class="form-group">
+              <label for="email2">Email Address</label>
+              <input type="email" id="email2" name="traveler2_email" placeholder="their@email.com"/>
+            </div>
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()">✦ Send Me Booking Information ✦</button>
+        <div class="disclaimer">
+          ⚠️ <strong>Please Note:</strong> Submitting this form does not guarantee your seat. Your spot is only secured upon receipt of your <strong>$75 non-refundable deposit per person</strong>. Spots are limited and available on a first-come, first-served basis. Full terms and conditions provided upon booking.
+        </div>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        <div class="s-icon">✦</div>
+        <h3>Thank You!</h3>
+        <p>Your request has been received.<br/>Vacation With Grace Travel and Tours will contact you with booking instructions and deposit information.<br/><br/><em style="color:var(--gold);">"We Plan. You Pack. God Makes a Way."</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <p class="section-eyebrow" style="text-align:center;">Have Questions?</p>
+  <h2 class="section-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);text-align:center;color:var(--white);margin-bottom:4px;">Call or Text Antwonette Clarke</h2>
+  <div class="contact-phone"><a href="tel:4802462353">480-246-2353</a></div>
+  <p style="font-size:13px;color:var(--text-light);">Happy to answer all your questions!</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="f-tagline">"More Than a Trip... It's an Experience That Will Stay With You Forever."</p>
+  <p><span>Vacation With Grace Travel and Tours</span></p>
+  <p>Antwonette Clarke · <a href="tel:4802462353" style="color:var(--gold);text-decoration:none;">480-246-2353</a></p>
+  <p>Independent Seller of Travel</p>
+  <p>FST No. <span>ST15578</span> · CST No. <span>2090937-50</span></p>
+</footer>
+
+<script>
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+  async function submitForm() {
+    const name1 = document.getElementById('name1').value.trim();
+    const phone1 = document.getElementById('phone1').value.trim();
+    const email1 = document.getElementById('email1').value.trim();
+    if (!name1 || !phone1 || !email1) {
+      alert('Please fill in all required fields for Traveler 1.');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('trip', 'Ark Encounter Getaway - Oct 30 - Nov 3, 2026');
+    formData.append('traveler1_name', name1);
+    formData.append('traveler1_phone', phone1);
+    formData.append('traveler1_email', email1);
+    formData.append('traveler2_name', document.getElementById('name2').value.trim());
+    formData.append('traveler2_phone', document.getElementById('phone2').value.trim());
+    formData.append('traveler2_email', document.getElementById('email2').value.trim());
+    try {
+      const response = await fetch('https://formspree.io/f/xredvnag', {
+        method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert('Something went wrong. Please try again or call Antwonette at 480-246-2353.');
+      }
+    } catch (err) {
+      alert('Network error. Please check your connection and try again.');
+    }
+  }
+</script>
+</body>
+</html>
